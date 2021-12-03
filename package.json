@@ -26,7 +26,15 @@
 				"command": "rojo-quick-debug.rojoBuild",
 				"title": "rojo-quick-debug: Build Quick Debug"
 			}
-		]
+		],
+		"menus": {
+			"explorer/context": [
+				{
+				"command": "rojo-quick-debug.rojoBuild",
+				"group": "2_workspace"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run package",
