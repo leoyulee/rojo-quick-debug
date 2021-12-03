@@ -13,13 +13,22 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('rojo-quick-debug.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Rojo Quick Debug!');
-	});
-
-	context.subscriptions.push(disposable);
+	console.log(context.subscriptions.push(
+		vscode.commands.registerCommand('rojo-quick-debug.helloWorld', () => {
+			// The code you place here will be executed every time your command is executed
+			// Display a message box to the user
+			vscode.window.showInformationMessage('Hello World from Rojo Quick Debug!');
+		})
+	));
+	console.log(context.subscriptions.push(
+		vscode.commands.registerCommand('rojo-quick-debug.rojoBuild', () => {
+			// The code you place here will be executed every time your command is executed
+			// Display a message box to the user
+			let result = vscode.commands.executeCommand('rojo.build');
+			vscode.window.showInformationMessage('rojo.build executed!');
+			return result;
+		})
+	));
 }
 
 // this method is called when your extension is deactivated
