@@ -10,14 +10,21 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:rojo-quick-debug.helloWorld"
+        "onCommand:rojo-quick-debug.helloWorld",
+		"onCommand:rojo-quick-debug.rojoBuild",
+		"workspaceContains:rojo.json",
+		"workspaceContains:*.project.json"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "rojo-quick-debug.helloWorld",
-				"title": "Hello World"
+				"title": "rojo-quick-debug: Hello World"
+			},
+			{
+				"command": "rojo-quick-debug.rojoBuild",
+				"title": "rojo-quick-debug: Build Quick Debug"
 			}
 		]
 	},
@@ -32,6 +39,9 @@
 		"lint": "eslint src --ext ts",
 		"test": "node ./out/test/runTest.js"
 	},
+	"extensionDependencies": [
+		"evaera.vscode-rojo"
+	],
 	"devDependencies": {
 		"@types/vscode": "^1.62.0",
 		"@types/glob": "^7.1.4",
