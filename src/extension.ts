@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import * as childProcess from 'child_process';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -21,10 +22,15 @@ export function activate(context: vscode.ExtensionContext) {
 		})
 	));
 	console.log(context.subscriptions.push(
-		vscode.commands.registerCommand('rojo-quick-debug.rojoBuild', () => {
+		vscode.commands.registerCommand('rojo-quick-debug.rojoBuild', (uri: vscode.Uri) => {
+			if (uri === null){ return ;};
 			// The code you place here will be executed every time your command is executed
 			// Display a message box to the user
-			let result = vscode.commands.executeCommand('rojo.build');
+			vscode.commands.executeCommand('rojo.build');
+			let result = childProcess.execFileSync(
+				"run-in-roblox", //path to run-in-roblox exe..?
+				["--place", "build.rbxl", "--script", uri.fsPath] //args
+			);
 			vscode.window.showInformationMessage('rojo.build executed!');
 			return result;
 		})
