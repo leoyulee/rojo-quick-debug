@@ -12,4 +12,9 @@ suite('Extension Test Suite', () => {
 		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
 		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
 	});
+	test('Core Command Test', () => {
+		let result = vscode.commands.executeCommand('rojo-quick-debug.rojoBulid');
+		console.log(result);
+		assert(result !== null);
+	});
 });
